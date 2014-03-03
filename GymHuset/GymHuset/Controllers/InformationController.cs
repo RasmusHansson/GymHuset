@@ -11,10 +11,29 @@ namespace GymHuset.Controllers
         //
         // GET: /Information/
 
-        public ActionResult Index()
+        public ActionResult OmOss()
         {
             return View();
         }
 
+        public ActionResult HittaHit()
+        {
+            return View();        
+        }
+
+        public ActionResult Kontakt()
+        {
+            return View();        
+        }
+
+        public ActionResult FAQ()
+        {
+            return View();        
+        }
+
+        public ActionResult Evenemang()
+        {
+            return View();        
+        }
     }
 }

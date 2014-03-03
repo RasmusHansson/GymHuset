@@ -16,5 +16,7 @@ namespace GymHuset.Controllers
             return View();
         }
 
+
+
     }
 }

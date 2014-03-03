@@ -218,10 +218,20 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Produkter\Index.cshtml" />
+    <Content Include="Views\Produkter\Klader.cshtml" />
+    <Content Include="Views\Produkter\Kosttillskott.cshtml" />
+    <Content Include="Views\Produkter\Search.cshtml" />
+    <Content Include="Views\Information\OmOss.cshtml" />
+    <Content Include="Views\Information\HittaHit.cshtml" />
+    <Content Include="Views\Information\Kontakt.cshtml" />
+    <Content Include="Views\Information\FAQ.cshtml" />
+    <Content Include="Views\Information\Evenemang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
