@@ -135,6 +135,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\StyleSheet1.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -227,6 +228,7 @@
     <Content Include="Views\Information\Kontakt.cshtml" />
     <Content Include="Views\Information\FAQ.cshtml" />
     <Content Include="Views\Information\Evenemang.cshtml" />
+    <Content Include="Views\Produkter\TestCSS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

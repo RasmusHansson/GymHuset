@@ -26,7 +26,10 @@ namespace GymHuset.Controllers
 
             return View(productList);
         }
-
+        public ActionResult TestCSS()
+        {
+            return View();
+        }
         public ActionResult Klader(string id)
         {
             return View();
