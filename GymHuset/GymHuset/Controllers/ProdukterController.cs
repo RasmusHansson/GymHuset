@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
+using GymHuset.Models;
 
 namespace GymHuset.Controllers
 {
@@ -12,9 +13,18 @@ namespace GymHuset.Controllers
         //
         // GET: /Produkter/
 
+        DataClasses1DataContext db = new DataClasses1DataContext();
+
         public ActionResult Index()
         {
-            return View();
+            List<tbProduct> productList = new List<tbProduct>();
+
+            foreach (tbProduct p in db.tbProducts)
+            {
+                productList.Add(p);
+            }
+
+            return View(productList);
         }
 
         public ActionResult Klader(string id)
