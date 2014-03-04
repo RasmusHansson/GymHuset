@@ -5,16 +5,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style type="text/css">
+    
+    #productListing {
+        width:1040px;
+        float:left;
+    }
+    
+    .productWrapper {
+        float:left;
+        width:200px;
+        height:275px;
+        background-color:white;
+        margin:5px;
+    }
+
+        .productWrapper div {
+            margin:5px;
+        }
+
+    .productDescription {
+        border-top:ridge;
+        border-bottom:ridge;
+    }
+
+    .productIMG {
+        margin:0 auto;
+        height:100px;
+        width:80px;
+    }
+
+
+</style>
+
 <h2>Erbjudanden</h2>
 
 <div>
-    @{
-        foreach (GymHuset.Models.tbProduct p in Model)
-        {
-            <div id="productListing">
+
+    <div id="productListing">
+        @{
+            foreach (GymHuset.Models.tbProduct p in Model)
+            {
                 <div class="productWrapper">
-                    <div class="productIMG">
-                        <img src="@p.sPicture" />
+                    <div class="productIMGWrapper">
+                        <img class="productIMG" src="@p.sPicture" />
                     </div>
                     <div class="productFacts">
                         <div class="productName">
@@ -29,13 +63,13 @@
                             if (p.iStockBalance > 10)
                             {
                                 <div class="productStock">
-
+                                    Antal i lager: 10+
                                 </div>                                 
                             }
                             else if (p.iStockBalance < 10)
                             {
                                 <div class="productStock">
-                                    Antal i lager: @p.iStockBalance.ToString();
+                                    Antal i lager: @p.iStockBalance.ToString()
                                 </div>                                   
                             }
                         }                        
@@ -43,105 +77,8 @@
                             Pris: @p.iPrice
                         </div>
                     </div> 
-                </div>
-                <div class="productWrapper">
-                    <div class="productIMG">
-                        <img src="@p.sPicture" />
-                    </div>
-                    <div class="productFacts">
-                        <div class="productName">
-                            @p.sName
-                        </div>          
-                        <div class="productDescription">
-                            @p.sDescription
-                        </div>
-                    </div>                    
-                    <div class="productBuy">
-                        @{
-                            if (p.iStockBalance > 10)
-                            {
-                                <div class="productStock">
-
-                                </div>                                 
-                            }
-                            else if (p.iStockBalance < 10)
-                            {
-                                <div class="productStock">
-                                    Antal i lager: @p.iStockBalance.ToString();
-                                </div>                                   
-                            }
-                        }                        
-                        <div class="productPrice">
-                            Pris: @p.iPrice
-                        </div>
-                    </div> 
-                </div>                
-                <div class="productWrapper">
-                    <div class="productIMG">
-                        <img src="@p.sPicture" />
-                    </div>
-                    <div class="productFacts">
-                        <div class="productName">
-                            @p.sName
-                        </div>          
-                        <div class="productDescription">
-                            @p.sDescription
-                        </div>
-                    </div>                    
-                    <div class="productBuy">
-                        @{
-                            if (p.iStockBalance > 10)
-                            {
-                                <div class="productStock">
-
-                                </div>                                 
-                            }
-                            else if (p.iStockBalance < 10)
-                            {
-                                <div class="productStock">
-                                    Antal i lager: @p.iStockBalance.ToString();
-                                </div>                                   
-                            }
-                        }                        
-                        <div class="productPrice">
-                            Pris: @p.iPrice
-                        </div>
-                    </div> 
-                </div>                
-                <div class="productWrapper">
-                    <div class="productIMG">
-                        <img src="@p.sPicture" />
-                    </div>
-                    <div class="productFacts">
-                        <div class="productName">
-                            @p.sName
-                        </div>          
-                        <div class="productDescription">
-                            @p.sDescription
-                        </div>
-                    </div>                    
-                    <div class="productBuy">
-                        @{
-                            if (p.iStockBalance > 10)
-                            {
-                                <div class="productStock">
-
-                                </div>                                 
-                            }
-                            else if (p.iStockBalance < 10)
-                            {
-                                <div class="productStock">
-                                    Antal i lager: @p.iStockBalance.ToString();
-                                </div>                                   
-                            }
-                        }                        
-                        <div class="productPrice">
-                            Pris: @p.iPrice
-                        </div>
-                    </div> 
-                </div>
-            </div>
-        } 
-        
-    }
+                </div>               
+            } 
+        }
+    </div>
 </div>
