@@ -7,9 +7,53 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    @RenderBody()
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
-</body>
+    <body>
+
+    <div class="TopMailDiv">
+        Maila oss på ProteinGossarna@Lunarstorm.se
+    </div>
+        <div class="Menu">
+        <ul>
+            <li><a href="#">Startsida</a>
+                <div>
+                    <ul>
+                        <li><a href="personlig-ogonkirurgi.html">PERSONLIG ÖGONKIRUGI</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">WebShop</a>
+                <div>
+                    <ul>
+                        <li><a href="Ögonmottagning.html">ÖGONMOTTAGNING</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#">Info</a>
+                <div>
+                    <ul>
+                        <li><a href="Ögats-Anatomi.html">ÖGATS ANATOMI</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+   
+            
+    </div>
+    <div class="test">
+
+            <div class="LeftBoxDiv">
+                Populäraste produkter
+            </div>
+                     <div class="ContentBoxDiv">
+                    @RenderBody()
+                    @Scripts.Render("~/bundles/jquery")
+                    @RenderSection("scripts", required: false)
+                    <div />
+            </div>
+            <div class="RightBoxDiv">
+                HÖGERBOX
+            </div>
+        </div>
+    </body>
 </html>
