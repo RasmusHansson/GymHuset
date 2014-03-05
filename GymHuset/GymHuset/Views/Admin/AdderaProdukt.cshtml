@@ -1,8 +1,10 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "AdderaProdukt";
 }
 
 <h2>Lägg till Produkt</h2>
+
 
 @using (Html.BeginForm())
 {
@@ -16,5 +18,9 @@
 @Html.TextBox("ProductQuantity")
    <p> Produkttyp</p>
 @Html.TextBox("ProductType")
+    <br /><br />
 <input type="submit" value="Lägg in Produkt" />
+    
+    
 } 
+<h4>@ViewBag.status</h4>

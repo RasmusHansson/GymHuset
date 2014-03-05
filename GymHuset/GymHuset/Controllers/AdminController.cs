@@ -59,7 +59,7 @@ namespace GymHuset.Controllers
                     };
                     db.tbProducts.InsertOnSubmit(product);
                     db.SubmitChanges();
-                    ViewBag.status = "Du har nu lagt till en ny produkt.";
+                    ViewBag.status = "Du har nu lagt till " + ProductName + " till produktlistan";
                     status = true;
                 }
             }
