@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "AdderaProdukt";
+}
+
+<h2>Lägg till Produkt</h2>
+
+@using (Html.BeginForm())
+{
+<p>Produktnamn</p>
+@Html.TextBox("ProductName")
+<p>Produktbeskrivning</p>
+@Html.TextBox("ProductDesc")
+<p>Produktpris</p>
+@Html.TextBox("ProductPrice")
+<p>Antal</p>
+@Html.TextBox("ProductQuantity")
+   <p> Produkttyp</p>
+@Html.TextBox("ProductType")
+<input type="submit" value="Lägg in Produkt" />
+} 

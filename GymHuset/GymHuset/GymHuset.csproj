@@ -240,10 +240,10 @@
     <Content Include="Views\Information\FAQ.cshtml" />
     <Content Include="Views\Information\Evenemang.cshtml" />
     <Content Include="Views\Produkter\TestCSS.cshtml" />
+    <Content Include="Views\Admin\AdderaProdukt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
