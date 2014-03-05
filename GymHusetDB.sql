@@ -36,6 +36,7 @@ CREATE TABLE [tbProduct] (
 	[sPicture] NVARCHAR(200),
 	[sDescription] NVARCHAR(2000),
 	[iStockBalance] INT NOT NULL,
+	[iItemsSold] INT NOT NULL,
 	PRIMARY KEY ([iID])
 )
 
