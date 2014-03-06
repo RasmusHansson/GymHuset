@@ -5,7 +5,11 @@
 }
 
 <h2>TaBortProdukt</h2>
-<table>
+
+@*@using (Html.BeginForm())
+{
+*@<table>
+
 @foreach (GymHuset.Models.tbProduct f in Model)
 {
     
@@ -14,9 +18,10 @@
     @f.sName
             </td>
         <td>
-    @Html.ActionLink("Ta bort", "TabortProdukt")
+    @Html.ActionLink("Ta bort", "TaBortProdukt", new { id = f.sName }) 
             </td>
         </tr>
         
 }
     </table>
+@*}*@

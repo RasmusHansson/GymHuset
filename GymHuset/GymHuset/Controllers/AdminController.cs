@@ -20,6 +20,11 @@ namespace GymHuset.Controllers
             return View();
         }
 
+        public ActionResult AdminSidan()
+        {
+            return View();
+        }
+
         public ActionResult AdderaProdukt(string ProductName, string ProductPrice, string ProductQuantity, string ProductDesc, string ProductType)
         {
             bool status = false; // Meddelande indikator
@@ -50,6 +55,7 @@ namespace GymHuset.Controllers
                                 status = true;
                                 @ViewBag.status = "Produkten finns redan, Välj ett annat namn.";
                             }
+
                     if (!status)
                     {
                         tbProduct product = new tbProduct
@@ -76,16 +82,28 @@ namespace GymHuset.Controllers
             return View();
         }
 
-        public ActionResult TaBortProdukt()        
+        public ActionResult TaBortProdukt(string id)        // int borde användas som id
         {
-            List<tbProduct> productList = new List<tbProduct>();
+            List<tbProduct> productlista = new List<tbProduct>();
+            productlista = (from f in db.tbProducts
+                            select f).ToList();
 
-            foreach (tbProduct p in db.tbProducts)
+            var product2Delete = (from f in db.tbProducts               
+                                  where f.sName == id
+                                  select f).FirstOrDefault();
+
+            if (id != null)
             {
-                productList.Add(p);
-            }
+                db.tbProducts.DeleteOnSubmit(product2Delete);
+                db.SubmitChanges();
 
-            return View(productList);
+                List<tbProduct> productlista2 = new List<tbProduct>();
+                productlista2 = (from f in db.tbProducts
+                                 select f).ToList();
+
+                return View(productlista2);
+            }
+            return View(productlista);
         }
 
         private List<tbProduct> getProducts()

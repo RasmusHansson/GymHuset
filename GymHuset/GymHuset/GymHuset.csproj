@@ -242,6 +242,8 @@
     <Content Include="Views\Produkter\TestCSS.cshtml" />
     <Content Include="Views\Admin\AdderaProdukt.cshtml" />
     <Content Include="Views\Admin\TaBortProdukt.cshtml" />
+    <Content Include="Views\Produkter\ProduktInfo.cshtml" />
+    <Content Include="Views\Admin\AdminSidan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
