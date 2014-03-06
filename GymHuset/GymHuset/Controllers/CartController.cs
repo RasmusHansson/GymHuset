@@ -27,10 +27,10 @@ namespace GymHuset.Controllers
             {
                 ((List<tbProduct>)Session["cartList"]).Remove(r);
             }
-            return RedirectToAction("Kundkorg");
+            return RedirectToAction("CartAdd");
         }
         //Lägger till produkt i kundkorgen
-        public ActionResult KundkorgAdd(int? id)
+        public ActionResult CartAdd(int? id)
         {
         
 
@@ -42,7 +42,7 @@ namespace GymHuset.Controllers
             ((List<tbProduct>)Session["cartList"]).Add(findProduct);
             ViewBag.cartCount = ((List<tbProduct>)Session["cartList"]).Count;
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Produkter");
         }
 
     }

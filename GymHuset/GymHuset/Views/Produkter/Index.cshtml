@@ -77,6 +77,11 @@
                         <div class="productPrice">
                             Pris: @p.iPrice
                         </div>
+                         <div class="addCart">
+                            Lägg till i kundkorg
+                     
+                             @Html.ActionLink("Lägg till i varukorg", "CartAdd", "Cart", new {id = p.iID}, null)
+                        </div>
                     </div> 
                 </div>               
             } 

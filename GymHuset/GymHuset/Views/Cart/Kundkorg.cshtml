@@ -1,5 +1,53 @@
-﻿@{
-    ViewBag.Title = "Kundkorg";
+﻿@model List<GymHuset.Models.tbProduct>
+@{
+    ViewBag.Title = "KundkorgAdd";
 }
 
-<h2>Kundkorg</h2>
+<h2>KundkorgAdd</h2>
+@Html.ActionLink("Startsida", "Index", "Produkter")
+ @{
+        foreach (GymHuset.Models.tbProduct p in Model.Distinct())
+        {
+           
+            <div id="productListing">
+                <div class="productWrapper">
+                    <div class="productIMG">
+                        <img src="@p.sPicture" />
+                    </div>
+                    <div class="productFacts">
+                        <div class="productName">
+                            @p.sName
+                        </div>          
+                        <div class="productDescription">
+                            @p.sDescription
+                        </div>
+                    </div>                    
+                    <div class="productBuy">
+                        @{
+                            if (p.iStockBalance > 10)
+                            {
+                                <div class="productStock">
+
+                                </div>                                 
+                            }
+                            else if (p.iStockBalance < 10)
+                            {
+                                <div class="productStock">
+                                    Antal i lager: @p.iStockBalance.ToString();
+                                </div>                                   
+                            }
+                        }                        
+                        <div class="productPrice">
+                            Pris: @p.iPrice
+                        </div>
+                        <div class="addtobasket">
+                            Lägg till i kundkorg
+                            @Html.ActionLink("Ta bort från kundkorg", "CartRemove", new {id = p.iID})
+                        </div>
+                    </div> 
+                </div>
+              
+            </div>
+        } 
+        
+    }
