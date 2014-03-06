@@ -24,48 +24,70 @@ namespace GymHuset.Controllers
         {
             bool status = false; // Meddelande indikator
             List<tbProduct> products = getProducts();
-            if (ProductName != null)
+
+            try
             {
-                if (ProductPrice == null)
+                if (ProductName != null)
                 {
-                    ViewBag.status = "Du måste ange ett pris.";
-                    status = true;
-                }
-                if (ProductQuantity == null)
-                {
-                    ViewBag.status = "Ange lagersaldo på produkt.";
-                    status = true;
-                }
-                if (ProductDesc == null || ProductDesc == "")
-                {
-                    ProductDesc = "";
-                }
-                if (!status)
-                    foreach (var f in db.tbProducts)
-                        if (f.sName.ToLower() == ProductName.ToLower())
-                        {
-                            status = true;
-                            @ViewBag.status = "Produkten finns redan, Välj ett annat namn.";
-                        }
-                if (!status)
-                {
-                    tbProduct product = new tbProduct
+                    if (ProductPrice == null)
                     {
-                        sName = ProductName,
-                        sDescription = ProductDesc,
-                        iPrice = int.Parse(ProductPrice),
-                        iStockBalance = int.Parse(ProductQuantity),  
-                        iProductType = int.Parse(ProductType)
-                    };
-                    db.tbProducts.InsertOnSubmit(product);
-                    db.SubmitChanges();
-                    ViewBag.status = "Du har nu lagt till " + ProductName + " till produktlistan";
-                    status = true;
+                        ViewBag.status = "Du måste ange ett pris.";
+                        status = true;
+                    }
+                    if (ProductQuantity == null)
+                    {
+                        ViewBag.status = "Ange lagersaldo på produkt.";
+                        status = true;
+                    }
+                    if (ProductDesc == null || ProductDesc == "")
+                    {
+                        ProductDesc = "";
+                    }
+                    if (!status)
+                        foreach (var f in db.tbProducts)
+                            if (f.sName.ToLower() == ProductName.ToLower())
+                            {
+                                status = true;
+                                @ViewBag.status = "Produkten finns redan, Välj ett annat namn.";
+                            }
+                    if (!status)
+                    {
+                        tbProduct product = new tbProduct
+                        {
+                            sName = ProductName,
+                            sDescription = ProductDesc,
+                            iPrice = int.Parse(ProductPrice),
+                            iStockBalance = int.Parse(ProductQuantity),
+                            iProductType = int.Parse(ProductType)
+                        };
+                        db.tbProducts.InsertOnSubmit(product);
+                        db.SubmitChanges();
+                        ViewBag.status = "Du har nu lagt till " + ProductName + " till produktlistan";
+                        status = true;
+                    }
                 }
             }
-
+            catch 
+            {
+                ViewBag.status = "Du måste fylla i alla fält korrekt.";
+                status = true;
+                return View();
+            }
             return View();
         }
+
+        public ActionResult TaBortProdukt()        
+        {
+            List<tbProduct> productList = new List<tbProduct>();
+
+            foreach (tbProduct p in db.tbProducts)
+            {
+                productList.Add(p);
+            }
+
+            return View(productList);
+        }
+
         private List<tbProduct> getProducts()
         {
             List<tbProduct> products = new List<tbProduct>();

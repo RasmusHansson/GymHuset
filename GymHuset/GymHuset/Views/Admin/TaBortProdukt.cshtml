@@ -1,0 +1,22 @@
+﻿@model List<GymHuset.Models.tbProduct> 
+
+@{
+    ViewBag.Title = "TaBortProdukt";
+}
+
+<h2>TaBortProdukt</h2>
+<table>
+@foreach (GymHuset.Models.tbProduct f in Model)
+{
+    
+    <tr>
+        <td>
+    @f.sName
+            </td>
+        <td>
+    @Html.ActionLink("Ta bort", "TabortProdukt")
+            </td>
+        </tr>
+        
+}
+    </table>
