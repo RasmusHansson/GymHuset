@@ -1,0 +1,73 @@
+﻿@model List<GymHuset.Models.tbProduct>
+@using GymHuset.Models
+
+<style type="text/css">
+
+    #popularListing {
+        width:1040px;
+        float:left;
+    }
+    
+    .popularWrapper {
+        float:left;
+        width:200px;
+        height:275px;
+        background-color:white;
+        margin:5px;
+        color:black;
+    }
+
+        .popularWrapper div {
+            margin:5px;
+        }
+
+    .popularDescription {
+        border-top:ridge;
+        border-bottom:ridge;
+    }
+
+    .popularIMG {
+        margin:0 auto;
+        height:100px;
+        width:80px;
+    }
+</style>
+
+
+@{
+    foreach (GymHuset.Models.tbProduct p in Model)
+    {
+        <div class="popularWrapper">
+            <div class="popularIMGWrapper">
+                <img class="popularIMG" src="@p.sPicture" />
+            </div>
+            <div class="popularFacts">
+                <div class="popularName">
+                    @p.sName
+                </div>          
+                <div class="popularDescription">
+                    @p.sDescription
+                </div>
+            </div>                    
+            <div class="popularBuy">
+                @{
+                    if (p.iStockBalance > 10)
+                    {
+                        <div class="popularStock">
+                            Antal i lager: 10+
+                        </div>                                 
+                    }
+                    else if (p.iStockBalance < 10)
+                    {
+                        <div class="popularStock">
+                            Antal i lager: @p.iStockBalance.ToString()
+                        </div>                                   
+                    }
+                }                        
+                <div class="popularPrice">
+                    Pris: @p.iPrice
+                </div>
+            </div> 
+        </div>               
+    }    
+}
