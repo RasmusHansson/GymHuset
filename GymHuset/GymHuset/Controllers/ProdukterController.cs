@@ -15,13 +15,18 @@ namespace GymHuset.Controllers
 
         DataClasses1DataContext db = new DataClasses1DataContext();
 
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             List<tbProduct> productList = new List<tbProduct>();
 
             foreach (tbProduct p in db.tbProducts)
             {
                 productList.Add(p);
+            }
+            if (searchString != null)
+            {
+                productList = (from prod in db.tbProducts.Where(c => c.sName.Contains(searchString)) select prod).ToList();
+                return View(productList);
             }
 
             return View(productList);
