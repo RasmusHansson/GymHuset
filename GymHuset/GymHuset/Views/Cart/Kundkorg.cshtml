@@ -6,7 +6,7 @@
 <h2>KundkorgAdd</h2>
 @Html.ActionLink("Startsida", "Index", "Produkter")
  @{
-        foreach (GymHuset.Models.tbProduct p in Model.Distinct())
+        foreach (GymHuset.Models.tbProduct p in Model)
         {
            
             <div id="productListing">

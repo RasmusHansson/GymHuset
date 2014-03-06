@@ -18,9 +18,19 @@ namespace GymHuset.Controllers
         //Kundkorg.cshtml, listar vad som finns i kundkorgen.
         public ActionResult Kundkorg()
         {
-          
-            var cartList = (List<tbProduct>)Session["cartList"];
-            return View(cartList);
+            if (Session["cartList"] == null)
+            {
+                return View("EmptyCart");
+            }
+            else if (((List<tbProduct>) Session["cartList"]).Count == 0)
+            {
+                return View("EmptyCart");
+            }
+            
+            
+                var cartList = (List<tbProduct>) Session["cartList"];
+                return View(cartList);
+            
         }
       
         //Tar bort produkt från kundkorgen
