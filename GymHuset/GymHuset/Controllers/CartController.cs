@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Protocols;
 using GymHuset.Models;
 
 namespace GymHuset.Controllers
@@ -16,6 +18,7 @@ namespace GymHuset.Controllers
         //Kundkorg.cshtml, listar vad som finns i kundkorgen.
         public ActionResult Kundkorg()
         {
+          
             var cartList = (List<tbProduct>)Session["cartList"];
             return View(cartList);
         }
@@ -23,11 +26,10 @@ namespace GymHuset.Controllers
         //Tar bort produkt från kundkorgen
         public ActionResult CartRemove(int? id)
         {
-            foreach (var r in ((List<tbProduct>)Session["cartList"]).Where(c => c.iID == id))
-            {
-                ((List<tbProduct>)Session["cartList"]).Remove(r);
-            }
-            return RedirectToAction("CartAdd");
+          
+                ((List<tbProduct>)Session["cartList"]).RemoveAll(c => c.iID == id);
+           
+            return RedirectToAction("Kundkorg");
         }
         //Lägger till produkt i kundkorgen
         public ActionResult CartAdd(int? id)
