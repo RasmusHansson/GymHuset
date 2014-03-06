@@ -2,12 +2,8 @@
 @using GymHuset.Models
 
 <style type="text/css">
-
-    #popularListing {
-        width:1040px;
-        float:left;
-    }
-    
+   
+    /* Behållare för en produktruta */
     .popularWrapper {
         float:left;
         width:200px;
@@ -17,15 +13,18 @@
         color:black;
     }
 
+        /* Egenskaper för alla div-ar innuti popularWrapper */
         .popularWrapper div {
             margin:5px;
         }
 
+    /* Produktbeskrivning */
     .popularDescription {
         border-top:ridge;
         border-bottom:ridge;
-    }
-
+    }  
+    
+     /* Bild på produkten */
     .popularIMG {
         margin:0 auto;
         height:100px;
@@ -35,6 +34,7 @@
 
 
 @{
+    @* Listar top 5 populära produkter *@
     foreach (GymHuset.Models.tbProduct p in Model)
     {
         <div class="popularWrapper">

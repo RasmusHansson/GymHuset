@@ -43,16 +43,19 @@
     <div class="test">
 
             <div class="LeftBoxDiv">
+                @* Border med top 5 populära produkter, till vänster *@
                 Populäraste produkter
                 @Html.Action("_PopProductsPartial", "Layout")
             </div>
                      <div class="ContentBoxDiv">
+                    @* Den aktuella vyn, i mitten *@
                     @RenderBody()
                     @Scripts.Render("~/bundles/jquery")
                     @RenderSection("scripts", required: false)
                     <div />
             </div>
             <div class="RightBoxDiv">
+                @* Facebookfeed? Sökfunktion? till höger *@
                 HÖGERBOX
             </div>
         </div>
