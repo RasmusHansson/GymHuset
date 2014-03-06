@@ -52,8 +52,7 @@ namespace GymHuset.Controllers
                 Session["cartList"] = basket;
             }
             ((List<tbProduct>)Session["cartList"]).Add(findProduct);
-            ViewBag.cartCount = ((List<tbProduct>)Session["cartList"]).Count;
-
+          
             return RedirectToAction("Index", "Produkter");
         }
 

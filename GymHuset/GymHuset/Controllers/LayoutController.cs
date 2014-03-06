@@ -13,9 +13,22 @@ namespace GymHuset.Controllers
         // GET: /Layout/
         DataClasses1DataContext db = new DataClasses1DataContext();
 
+        public ActionResult _CartSmall()
+        {
+            //Visar hur många varor det är i kundkorgen
+            if (Session["cartList"] != null)
+            {
+                ViewBag.cartCount = ((List<tbProduct>)Session["cartList"]).Count;
+                ViewBag.cartSum = ((List<tbProduct>) Session["cartList"]).Sum(prod => prod.iPrice);
+               
+                return View();
 
+            }
+            return View();
+        }
         public ActionResult _PopProductsPartial()
         {
+          
             //Välj ut alla produkter i databasen och sortera på antal sålda produkter, flest -> minst
             List<tbProduct> productList = (from p in db.tbProducts
                                            select p).OrderByDescending(p => p.iItemsSold).ToList();

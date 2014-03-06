@@ -48,11 +48,12 @@
             
     </div>
     <div class="test">
-
+         @Html.Action("_CartSmall", "Layout")
             <div class="LeftBoxDiv">
                 @* Border med top 5 populära produkter, till vänster *@
                 Populäraste produkter
                 @Html.Action("_PopProductsPartial", "Layout")
+             
             </div>
                      <div class="ContentBoxDiv">
                     @* Den aktuella vyn, i mitten *@

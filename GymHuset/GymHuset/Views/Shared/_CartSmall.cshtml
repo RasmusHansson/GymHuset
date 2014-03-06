@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_CartSmall</title>
+</head>
+<body>
+    <div>
+       Antal produkter: @ViewBag.cartCount
+       Pris: @ViewBag.cartSum
+        @Html.ActionLink("Gå till kassan", "Kundkorg", "Cart")
+    </div>
+</body>
+</html>
