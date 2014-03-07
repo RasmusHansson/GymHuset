@@ -54,7 +54,7 @@ namespace GymHuset.Controllers
                 Session["cartList"] = basket;
             }
 
-            bool checkCartList = ((List<tbProduct>) Session["cartList"]).AsEnumerable().Contains(findProduct);
+            bool checkCartList = ((List<tbProduct>) Session["cartList"]).Any(c => c.iID == id);
             if (checkCartList == false)
             {
                 ((List<tbProduct>)Session["cartList"]).Add(findProduct);
