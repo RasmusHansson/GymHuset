@@ -47,20 +47,26 @@ namespace GymHuset.Controllers
         
 
             var findProduct = (from f in db.tbProducts.Where(c => c.iID == id) select f).FirstOrDefault();
-        
-         
-          
-       
-          
+
 
             if (Session["cartList"] == null)
             {
                 Session["cartList"] = basket;
             }
 
-            ((List<tbProduct>)Session["cartList"]).Add(findProduct);
-   
+            bool checkCartList = ((List<tbProduct>) Session["cartList"]).AsEnumerable().Contains(findProduct);
+            if (checkCartList == false)
+            {
+                ((List<tbProduct>)Session["cartList"]).Add(findProduct);
+                return RedirectToAction("Index", "Produkter");
+            }
+            foreach (tbProduct prod in  ((List<tbProduct>) Session["cartList"]).Where(c => c.iID == id))
+            {
+                prod.iCount++;
+            }
             return RedirectToAction("Index", "Produkter");
+   
+           
         }
 
         public ActionResult CheckOut()
