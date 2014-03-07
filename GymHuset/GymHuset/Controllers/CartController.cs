@@ -64,6 +64,7 @@ namespace GymHuset.Controllers
             {
                 prod.iCount++;
             }
+           
             return RedirectToAction("Index", "Produkter");
    
            
@@ -85,6 +86,7 @@ namespace GymHuset.Controllers
             //string GuaranteeOffered = "1";
             //string MD5string = SellerEmail + ":" + Cost + ":" + ExtraCost + ":" + OkUrl + ":" + GuaranteeOffered
             //string MD5Hash = MD5(MD5string);
+          
             var order = new tbOrder()
             {
                 iUserID = 1,
