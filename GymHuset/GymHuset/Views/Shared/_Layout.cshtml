@@ -8,61 +8,65 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
     <body>
+      @*START FACEBOOKSCRIPT*@
         <div id="fb-root"></div>
-<script>(function (d, s, id) {
+        <script>(function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
     js.src = "//connect.facebook.net/sv_SE/all.js#xfbml=1";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-    <div class="TopMailDiv">
-        Maila oss på ProteinGossarna@Lunarstorm.se
-    </div>
+      @*SLUT FACEBOOKSCRIPT*@
+
+        <div class="TopMailDiv">
+            Maila oss på ProteinGossarna@Lunarstorm.se
+        </div>
         <div class="Menu">
-        <ul>
-            <li><a href="#">Startsida</a>
-                <div>
-                    <ul>
-                        <li><a href="personlig-ogonkirurgi.html">PERSONLIG ÖGONKIRUGI</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a href="#">WebShop</a>
-                <div>
-                    <ul>
-                        <li><a href="Ögonmottagning.html">ÖGONMOTTAGNING</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a href="#">Info</a>
-                <div>
-                    <ul>
-                        <li><a href="Ögats-Anatomi.html">ÖGATS ANATOMI</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
+            <ul>
+                <li><a href="#">Startsida</a>
+                    <div>
+                        <ul>
+                            <li><a href="personlig-ogonkirurgi.html">PERSONLIG ÖGONKIRUGI</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">WebShop</a>
+                    <div>
+                        <ul>
+                            <li><a href="Ögonmottagning.html">ÖGONMOTTAGNING</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Info</a>
+                    <div>
+                        <ul>
+                            <li><a href="Ögats-Anatomi.html">ÖGATS ANATOMI</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+            </ul>
    
             
-    </div>
-    <div class="test">
-         @Html.Action("_CartSmall", "Layout")
+        </div>
+        <div class="test">
+            @Html.Action("_CartSmall", "Layout") @*Visar antal produkter i kundkorg+summa*@
             <div class="LeftBoxDiv">
                 @* Border med top 5 populära produkter, till vänster *@
                 Populäraste produkter
                 @Html.Action("_PopProductsPartial", "Layout")
              
             </div>
-                     <div class="ContentBoxDiv">
-                    @* Den aktuella vyn, i mitten *@
-                    @RenderBody()
-                    @Scripts.Render("~/bundles/jquery")
-                    @RenderSection("scripts", required: false)
-                    <div />
+            <div class="ContentBoxDiv">
+                @* Den aktuella vyn, i mitten *@
+                @RenderBody()
+                @Scripts.Render("~/bundles/jquery")
+                @RenderSection("scripts", required: false)
+                <div />
             </div>
-         <div class="fb-like-box" data-href="https://www.facebook.com/pages/Sweprotte/1426843010891655" data-width="275" data-height="500" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
+            @*FACEBOOKDIV*@<div class="fb-like-box" data-href="https://www.facebook.com/pages/Sweprotte/1426843010891655" data-width="275" data-height="500" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="true" data-show-border="true"></div>
         </div>
     </body>
 </html>

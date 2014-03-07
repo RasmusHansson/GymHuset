@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using GymHuset.Models;
@@ -17,12 +18,8 @@ namespace GymHuset.Controllers
 
         public ActionResult Index(string searchString)
         {
-            List<tbProduct> productList = new List<tbProduct>();
+            var productList = db.tbProducts.ToList();
 
-            foreach (tbProduct p in db.tbProducts)
-            {
-                productList.Add(p);
-            }
             if (searchString != null)
             {
                 productList = (from prod in db.tbProducts.Where(c => c.sName.Contains(searchString)) select prod).ToList();
@@ -35,23 +32,21 @@ namespace GymHuset.Controllers
         {
             return View();
         }
-        public ActionResult Klader(string id)
+
+        public ActionResult ProduktInfo(int id)
         {
-            return View();
+            var singleProduct = from s in db.tbProducts.Where(c => c.iID == id) select s;
+
+            return View(singleProduct);
         }
 
-        public ActionResult Kosttillskott(string id)
+        public ActionResult TypeOfProduct(int id)
         {
-            return View();
-        }
+            var typeList = db.tbProducts.Where(c => c.iProductType == id).ToList();
+            return View("Index", typeList);
 
-        public ActionResult Search(string searchString)
-        {
-            return View();
-        }
 
-     
-     
+        }
 
     }
 }

@@ -1,12 +1,15 @@
-﻿@model List<GymHuset.Models.tbProduct>
+﻿@using System.Activities.Expressions
+@using System.Data.Entity.ModelConfiguration.Conventions
+@using Microsoft.Ajax.Utilities
+@model IEnumerable<GymHuset.Models.tbProduct>
 @{
-    ViewBag.Title = "KundkorgAdd";
+    ViewBag.Title = "Kundkorg";
 }
 
 <h2>KundkorgAdd</h2>
 @Html.ActionLink("Startsida", "Index", "Produkter")
  @{
-        foreach (GymHuset.Models.tbProduct p in Model)
+        foreach (GymHuset.Models.tbProduct p in Model.DistinctBy(c => c.iID))
         {
            
             <div id="productListing">
@@ -40,14 +43,16 @@
                         <div class="productPrice">
                             Pris: @p.iPrice
                         </div>
+                      
                         <div class="addtobasket">
-                            Lägg till i kundkorg
+                     
                             @Html.ActionLink("Ta bort från kundkorg", "CartRemove", new {id = p.iID})
+                       
+
                         </div>
                     </div> 
-                </div>
-              
-            </div>
+                </div>           
+            </div> 
         } 
-        
-    }
+ }
+ @Html.ActionLink("Betala", "CheckOut")

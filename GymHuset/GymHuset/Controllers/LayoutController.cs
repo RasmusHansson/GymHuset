@@ -9,13 +9,13 @@ namespace GymHuset.Controllers
 {
     public class LayoutController : Controller
     {
-        //
-        // GET: /Layout/
+      
         DataClasses1DataContext db = new DataClasses1DataContext();
 
+        //Visar hur många varor det är i kundkorgen+total kostnad
         public ActionResult _CartSmall()
         {
-            //Visar hur många varor det är i kundkorgen
+           
             if (Session["cartList"] != null)
             {
                 ViewBag.cartCount = ((List<tbProduct>)Session["cartList"]).Count;

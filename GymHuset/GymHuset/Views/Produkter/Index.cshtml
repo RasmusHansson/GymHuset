@@ -45,9 +45,11 @@
 @Html.ActionLink("Admin sidan", "AdminSidan", "Admin")
 <h2>Erbjudanden</h2>
 @Html.ActionLink("Kundkorg", "Kundkorg", "Cart")
+@Html.ActionLink("Kläder", "TypeOfProduct", new {id = 1})
+@Html.ActionLink("Kosttillskott", "TypeOfProduct", new {id = 2})
 
 <div>
-
+   
     <div id="productListing">
         @{
             foreach (GymHuset.Models.tbProduct p in Model)
@@ -83,9 +85,9 @@
                             Pris: @p.iPrice
                         </div>
                          <div class="addCart">
-                            Lägg till i kundkorg
-                     
+                         
                              @Html.ActionLink("Lägg till i varukorg", "CartAdd", "Cart", new {id = p.iID}, null)
+                             @Html.ActionLink("Info", "ProduktInfo", new {id = p.iID}, null)
                         </div>
                     </div> 
                 </div>               

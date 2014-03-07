@@ -3,3 +3,49 @@
 }
 
 <h2>ProduktInfo</h2>
+ @Html.ActionLink("Startsida", "Index")
+  <div id="productListing">
+        @{
+            foreach (GymHuset.Models.tbProduct p in Model)
+            {
+                <div class="productWrapper">
+                    <div class="productIMGWrapper">
+                        <img class="productIMG" src="@p.sPicture" />
+                    </div>
+                    <div class="productFacts">
+                        <div class="productName">
+                            @p.sName
+                        </div>          
+                        <div class="productDescription">
+                            @p.sDescription
+                        </div>
+                    </div>                    
+                    <div class="productBuy">
+                        @{
+                            if (p.iStockBalance > 10)
+                            {
+                                <div class="productStock">
+                                    Antal i lager: 10+
+                                </div>                                 
+                            }
+                            else if (p.iStockBalance < 10)
+                            {
+                                <div class="productStock">
+                                    Antal i lager: @p.iStockBalance.ToString()
+                                </div>                                   
+                            }
+                        }                        
+                        <div class="productPrice">
+                            Pris: @p.iPrice
+                        </div>
+                         <div class="addCart">
+                           
+                     
+                             @Html.ActionLink("Lägg till i varukorg", "CartAdd", "Cart", new {id = p.iID}, null)
+                         
+                        </div>
+                    </div> 
+                </div>               
+            } 
+        }
+    </div>
