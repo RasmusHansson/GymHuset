@@ -11,15 +11,11 @@ namespace GymHuset.Controllers
 {
     public class ProdukterController : Controller
     {
-        //
-        // GET: /Produkter/
-
         DataClasses1DataContext db = new DataClasses1DataContext();
 
         public ActionResult Index(string searchString)
         {
             var productList = db.tbProducts.ToList();
-
             if (searchString != null)
             {
                 productList = (from prod in db.tbProducts.Where(c => c.sName.Contains(searchString)) select prod).ToList();
@@ -28,10 +24,7 @@ namespace GymHuset.Controllers
 
             return View(productList);
         }
-        public ActionResult TestCSS()
-        {
-            return View();
-        }
+      
 
         public ActionResult ProduktInfo(int id)
         {
@@ -44,7 +37,6 @@ namespace GymHuset.Controllers
         {
             var typeList = db.tbProducts.Where(c => c.iProductType == id).ToList();
             return View("Index", typeList);
-
 
         }
 

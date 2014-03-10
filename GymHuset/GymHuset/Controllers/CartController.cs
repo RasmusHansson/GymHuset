@@ -36,35 +36,31 @@ namespace GymHuset.Controllers
         //Tar bort produkt från kundkorgen
         public ActionResult CartRemove(int? id)
         {
-          
                 ((List<tbProduct>)Session["cartList"]).RemoveAll(c => c.iID == id);
-           
             return RedirectToAction("Kundkorg");
         }
         //Lägger till produkt i kundkorgen
         public ActionResult CartAdd(int? id)
         {
-        
-
             var findProduct = (from f in db.tbProducts.Where(c => c.iID == id) select f).FirstOrDefault();
-
 
             if (Session["cartList"] == null)
             {
                 Session["cartList"] = basket;
             }
 
+            //Kollar om produkten redan finns i listan.
             bool checkCartList = ((List<tbProduct>) Session["cartList"]).Any(c => c.iID == id);
             if (checkCartList == false)
             {
-                ((List<tbProduct>)Session["cartList"]).Add(findProduct);
+                ((List<tbProduct>) Session["cartList"]).Add(findProduct);
                 return RedirectToAction("Index", "Produkter");
             }
             foreach (tbProduct prod in  ((List<tbProduct>) Session["cartList"]).Where(c => c.iID == id))
             {
                 prod.iCount++;
             }
-           
+
             return RedirectToAction("Index", "Produkter");
    
            
@@ -89,9 +85,9 @@ namespace GymHuset.Controllers
           
             var order = new tbOrder()
             {
-                iUserID = 1,
+                iUserID = 2, //Byt till Session["login"].ID
                 iStatus = 1,
-                iSum = ((List<tbProduct>) Session["cartList"]).Sum(c => c.iPrice),
+                iSum = ((List<tbProduct>)Session["cartList"]).Sum(prod => prod.iPrice * prod.iCount),
                 dtOrderDate = DateTime.Now
 
             };
@@ -108,9 +104,10 @@ namespace GymHuset.Controllers
                     iPrice = prod.iPrice
                 };
                 db.tbProductOrders.InsertOnSubmit(prodOrder);
+                
             }
            db.SubmitChanges();
-               return View();
+               return View(); //Gå till för "färdig" betalning
         }
 
        

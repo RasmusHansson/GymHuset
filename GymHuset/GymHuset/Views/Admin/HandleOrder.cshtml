@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "HandleOrder";
+}
+
+<h2>HandleOrder</h2>
+@{
+    foreach (GymHuset.Models.tbOrder order in Model)
+    {
+        <div>OrderID: @order.iID</div>
+        <div>Användarnamn: @order.tbUser.sUsername</div>
+        <div>Email: @order.tbUser.sEmail</div>
+        <div>Status: @order.tbStatus.sOrderStatus</div>
+        <div>Datum: @order.dtOrderDate</div>
+        <div>Pris: @order.iSum</div>
+  
+        }
+  
+}

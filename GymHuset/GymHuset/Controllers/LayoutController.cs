@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using GymHuset.Models;
 
 namespace GymHuset.Controllers
@@ -18,12 +20,13 @@ namespace GymHuset.Controllers
            
             if (Session["cartList"] != null)
             {
-                ViewBag.cartCount = ((List<tbProduct>)Session["cartList"]).Count;
-                ViewBag.cartSum = ((List<tbProduct>) Session["cartList"]).Sum(prod => prod.iPrice);
+                ViewBag.cartCount = ((List<tbProduct>)Session["cartList"]).Sum(c => c.iCount);
+                ViewBag.cartSum = ((List<tbProduct>) Session["cartList"]).Sum(prod => prod.iPrice * prod.iCount) + ":-";
                
                 return View();
-
             }
+            ViewBag.cartCount = "0";
+            ViewBag.cartSum = "0:-";
             return View();
         }
         public ActionResult _PopProductsPartial()
@@ -34,19 +37,20 @@ namespace GymHuset.Controllers
                                            select p).OrderByDescending(p => p.iItemsSold).ToList();
 
 
-            List<GymHuset.Models.tbProduct> popularList = new List<GymHuset.Models.tbProduct>();
+            List<tbProduct> popularList = new List<tbProduct>();
 
             //Plocka ut de fem högst säljande produkterna och lägg i en ny lista 
             for (int i = 0; i < 5; i++)
             {
                 popularList.Add((productList).First());
-
                 productList.Remove((productList).First());
             }
 
             //Skicka med listan på top 5 populära produkter till vyn Shared/_PopProductsPartial.cshtml
             return PartialView(popularList);
         }
+
+      
 
     }
 }

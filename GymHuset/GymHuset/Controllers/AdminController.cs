@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Runtime.Remoting.Messaging;
+using System.Web.Providers.Entities;
 using GymHuset.Models;
 
 namespace GymHuset.Controllers
@@ -11,46 +14,40 @@ namespace GymHuset.Controllers
 
     public class AdminController : Controller
     {
-        //
-        // GET: /Admin/
+
         DataClasses1DataContext db = new DataClasses1DataContext();
-        
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult AdminSidan()
         {
             return View();
         }
 
-        public ActionResult AdderaProdukt(string ProductName, string ProductPrice, string ProductQuantity, string ProductDesc, string ProductType)
+        public ActionResult AdderaProdukt(string productName, string productPrice, string productQuantity, string productDesc, string productType)
         {
             bool status = false; // Meddelande indikator
             List<tbProduct> products = getProducts();
 
             try
             {
-                if (ProductName != null)
+                if (productName != null)
                 {
-                    if (ProductPrice == null)
+                    if (productPrice == null)
                     {
                         ViewBag.status = "Du måste ange ett pris.";
                         status = true;
                     }
-                    if (ProductQuantity == null)
+                    if (productQuantity == null)
                     {
                         ViewBag.status = "Ange lagersaldo på produkt.";
                         status = true;
                     }
-                    if (ProductDesc == null || ProductDesc == "")
+                    if (string.IsNullOrEmpty(productDesc))
                     {
-                        ProductDesc = "";
+                        productDesc = "";
                     }
                     if (!status)
                         foreach (var f in db.tbProducts)
-                            if (f.sName.ToLower() == ProductName.ToLower())
+                            if (f.sName.ToLower() == productName.ToLower())
                             {
                                 status = true;
                                 @ViewBag.status = "Produkten finns redan, Välj ett annat namn.";
@@ -58,17 +55,17 @@ namespace GymHuset.Controllers
 
                     if (!status)
                     {
-                        tbProduct product = new tbProduct
+                        var product = new tbProduct
                         {
-                            sName = ProductName,
-                            sDescription = ProductDesc,
-                            iPrice = int.Parse(ProductPrice),
-                            iStockBalance = int.Parse(ProductQuantity),
-                            iProductType = int.Parse(ProductType)
+                            sName = productName,
+                            sDescription = productDesc,
+                            iPrice = int.Parse(productPrice),
+                            iStockBalance = int.Parse(productQuantity),
+                            iProductType = int.Parse(productType)
                         };
                         db.tbProducts.InsertOnSubmit(product);
                         db.SubmitChanges();
-                        ViewBag.status = "Du har nu lagt till " + ProductName + " till produktlistan";
+                        ViewBag.status = "Du har nu lagt till " + productName + " till produktlistan";
                         status = true;
                     }
                 }
@@ -113,7 +110,28 @@ namespace GymHuset.Controllers
                        select f).ToList();
             return products;
         }
+        //Orders.cshtml, listar ut alla orders
+        public ActionResult Orders(string emailFilter)
+        {
+            if (emailFilter == null)
+            {
+            var listOrder = from o in db.tbOrders.OrderBy(c => c.dtOrderDate)
+                select o;
+            return View(listOrder);
+            }
+            var listOrderFilter = from o in db.tbOrders.Where(c => c.tbUser.sEmail.Contains(emailFilter)).OrderBy(c => c.dtOrderDate)
+                            select o;
+            return View(listOrderFilter);
+        }
 
+        public ActionResult HandleOrder(int id)
+        {
+            var singleOrder = from o in db.tbOrders.Where(c => c.iID == id) select o;
+         
+            return View(singleOrder);
+        }
+
+     
 
 
     }
